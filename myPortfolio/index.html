@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hemanathan N  | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+        :root {
+          font-size: 10px;
+          font-family: "Poppins", sans-serif;
+          scroll-behavior: smooth;
+        }
+        * {
+          box-sizing: border-box;
+        }
+        body {
+          margin: 0;
+          padding: 0;
+          background-color: #f9fbfc;
+          font-size: 1.6rem;
+        }
+        header {
+          display: flex;
+          position: fixed;
+          top: 0;
+          left: 0;
+          background-color: #f9fbfc;
+          flex-flow: row wrap;
+          justify-content: space-between;
+          align-items: center;
+          padding: 2rem 15rem;
+          margin: 0;
+          transition: all 0.2s ease-in-out;
+          height: auto;
+          min-height: 10vh;
+          width: 100%;
+          z-index: 99;
+        }
+        header a {
+          color: #333333;
+          text-decoration: none;
+        }
+        header span {
+          font-size: 2.5rem;
+          font-weight: 500;
+        }
+        nav {
+          width: max-content;
+          transition: all 0.2s ease-in-out;
+        }
+        nav a {
+          font-size: 2rem;
+          padding: 1rem;
+          transition: all 0.2s ease-in-out;
+          margin: 1rem;
+        }
+        nav a:hover {
+          font-weight: 500;
+          border-bottom: 2px solid #333333;
+        }
+        #menu {
+          display: none;
+        }
+        #menu:checked~header>nav {
+          display: block;
+        }
+        #menu:checked~header>nav>a {
+          display: block;
+          width: 100%;
+        }
+        #menu:checked~header>nav>a:hover {
+          border-width: 0.2rem 0;
+          border-style: solid none;
+          padding: 0.8rem 0;
+        }
+        #menu-lbl {
+          display: none;
+          width: 3rem;
+          cursor: pointer;
+          margin-top: 0.5rem;
+          border-radius: 0.4rem;
+          transition: all 0.2s ease-in-out;
+        }
+        #menu-lbl:hover {
+          transform: scale(1.05);
+        }
+        #menu-lbl:active {
+          transform: scale(1.06);
+        }
+        #menu-lbl img {
+          width: auto;
+          max-width: 100%;
+          height: auto;
+        }
+        .bright {
+          background-color: #f9fbfc;
+          color: #333333;
+        }
+        .dark {
+          background-color: #333333;
+          color: #f9fbfc;
+        }
+        #welcome-section {
+          height: 100vh;
+          width: 100%;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          flex-flow: column wrap;
+          background: url("https://i.ibb.co/PWXJ896/bgpic.png") no-repeat;
+          background-size: 100% 100%;
+          align-items: center;
+          text-align: center;
+          justify-content: center;
+        }
+        .eye-grabber {
+          height: max-content;
+        }
+        .eye-grabber h1,
+        .eye-grabber h2 {
+          margin: 0;
+          padding: 0;
+        }
+        .eye-grabber h1 {
+          font-size: 5rem;
+          font-weight: 500;
+          color: #333333;
+        }
+        .eye-grabber h2 {
+          font-size: 2rem;
+          color: #666666;
+          font-weight: 400;
+        }
+        section {
+          min-height: 100vh;
+          height: auto;
+          width: 100%;
+          display: flex;
+          padding: 10rem 15rem;
+          position: relative;
+          flex-flow: column wrap;
+        }
+        section h4 {
+          font-size: 3rem;
+          font-weight: 400;
+          padding: 6rem 0;
+          flex-basis: 100%;
+        }
+        section h3 {
+          font-size: 15rem;
+          position: absolute;
+          left: 2rem;
+          margin: 0;
+          padding: 0;
+          opacity: 0.2;
+        }
+        section p {
+          font-size: 2rem;
+        }
+        .about-text-container {
+          flex: 1;
+          margin: 0;
+        }
+        .image-container {
+          flex: 1;
+          border-radius: 0.4rem;
+          padding: 3rem 2rem;
+        }
+        .image-container>img {
+          width: auto;
+          max-width: 100%;
+          height: auto;
+          max-width: 100%;
+        }
+        #about {
+          flex-flow: row wrap;
+          align-content: flex-start;
+          justify-content: space-between;
+        }
+        .icon-tiles-container {
+          display: flex;
+          flex-flow: row wrap;
+          align-items: center;
+          justify-content: space-around;
+        }
+        .icon-tile {
+          height: 15rem;
+          padding: 2rem 1rem;
+          transition: all 0.2s ease-in-out;
+        }
+        .icon-tile:hover {
+          cursor: pointer;
+          transform: scale(1.05);
+        }
+        .icon-tile img {
+          width: auto;
+          max-width: 100%;
+          height: auto;
+          max-height: 100%;
+        }
+        .project-tile {
+          display: flex;
+          flex-flow: row wrap;
+          align-content: flex-start;
+          padding: 10rem 0;
+        }
+        .project-tile h5 {
+          font-size: 3rem;
+          font-weight: 500;
+          margin-top: 0;
+          margin-bottom: 1rem;
+        }
+        .project-tile ul {
+          padding-bottom: 2rem;
+        }
+        .project-tile a {
+          font-size: 1.8rem;
+          text-decoration: none;
+          background-color: #333333;
+          padding: 1.2rem 1rem;
+          border-radius: 0.4rem;
+          color: #f9fbfc;
+          transition: padding 0.2s ease-in-out;
+          box-shadow: 0 6px 31px -2px rgba(0, 0, 0, 0.15);
+        }
+        .project-tile a:hover {
+          background-color: #444444;
+          color: #fafafa;
+        }
+        .project-tile a:active {
+          background-color: #222222;
+          padding: 1rem 0.8rem;
+          box-shadow: 0 6px 31px -2px rgba(0, 0, 0, 0.3);
+          color: #fafafa;
+        }
+        .tile-text {
+          flex: 1;
+        }
+        .tile-img {
+          flex: 1.3;
+          position: relative;
+          padding: 0 5rem 2rem 2rem;
+          height: max-content;
+        }
+        .big-snap {
+          max-width: 100%;
+          background-color: white;
+          border: 0.5rem solid #333333;
+          border-radius: 1rem;
+          box-shadow: 0 6px 31px -2px rgba(0, 0, 0, 0.15);
+        }
+        .small-snap {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          height: 70%;
+          max-width: 100%;
+          border: 0.3rem solid #333333;
+          border-radius: 1rem;
+          max-height: 30rem;
+          box-shadow: 0 6px 31px -2px rgba(0, 0, 0, 0.15);
+          z-index: 5;
+        }
+        footer {
+          background-color: #222222;
+          color: #f9fbfc;
+          width: 100%;
+          height: 10vh;
+          bottom: 0;
+          left: 0;
+          z-index: -99;
+        }
+        @media (max-width: 990px) {
+          header {
+            padding: 2rem 5rem;
+          }
+          section {
+            padding: 10rem 5rem;
+          }
+        }
+        @media (max-width: 760px) {
+          header {
+            padding: 2rem;
+            text-align: center;
+          }
+          #welcome-section {
+            background-size: cover;
+            background-position: center;
+          }
+          nav {
+            display: none;
+            width: 100%;
+            background-color: #fafafa;
+          }
+          #menu-lbl {
+            display: block;
+          }
+          section {
+            flex-flow: column wrap;
+            padding: 10rem 2rem;
+          }
+          section h3 {
+            position: static;
+            font-size: 5rem;
+            opacity: 0.5;
+            margin: 0;
+          }
+          section h4 {
+            padding: 1rem 0;
+          }
+          #about {
+            flex-flow: column wrap;
+            align-content: center;
+          }
+          .about-text-container {
+            flex-basis: 100%;
+          }
+          .image-container {
+            flex-basis: 100%;
+          }
+          .icon-tile {
+            height: 12rem;
+          }
+          .project-tile {
+            flex-flow: column-reverse wrap;
+          }
+          .tile-img {
+            flex-basis: 100%;
+            padding-left: 0;
+          }
+          .tile-text {
+            padding-top: 2rem;
+          }
+        }
+        @media (max-width: 480px) {
+          .icon-tile {
+            width: 10rem;
+            height: 10rem;
+          }
+        }
+    </style>
+</head>
+<body>
+    <input type="checkbox" id="menu" />
+    <header id="navbar">
+      <a href="#welcome-section"><span>Hemanathan N</span></a>
+      <label for="menu" id="menu-lbl"
+        ><img
+        src="https://i.ibb.co/FK3zKyW/menu.png"
+        alt="Menu"
+      /></label>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#resume">Resume</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+    <section id="welcome-section" class="bright">
+      <div class="eye-grabber">
+        <h1>An Aspiring DevOps and Cloud Engineer.</h1>
+        <h2>Mastering CI/CD and Cloud Platforms.</h2>
+      </div>
+      <div id="social"></div>
+    </section>
+    <section id="about" class="dark">
+      <h3>About Me</h3>
+      <h4>Cloud Automater, Multi-Cloud Learner and Biker</h4>
+      <div class="about-text-container">
+        <p>Hey! my name is Mohd Shariq.</p>
+        <p>I am a student of computer science living in Delhi, India.</p>
+        <p>I am learning new things and improving on what i already know.</p>
+        <p>
+          I know a few programming languages, git, sql, Photoshop (just enough to
+          get the basic things done),also i can sing just fine and i like making
+          memes.
+        </p>
+      </div>
+      <div class="image-container">
+        <img
+        src="https://i.ibb.co/hMQFW33/css-meme.gif"
+        alt="CSS meme"
+        />
+      </div>
+    </section>
+    <section id="skills" class="dark">
+      <h3>Skills</h3>
+      <h4>Programming and beautifying things</h4>
+      <p>These are some of the things that i know :</p>
+      <div class="icon-tiles-container">
+        <div class="icon-tile">
+          <img
+          src="https://i.ibb.co/r0LpLbj/html-ico.png"
+          title="HTML 5"
+            alt="HTML 5 logo"
+          />
+        </div>
+        <div class="icon-tile">
+          <img
+          src="https://i.ibb.co/8YhRhJ3/css-ico.png"
+          title="CSS 3"
+            alt="CSS 3 logo"
+          />
+        </div>
+        <div class="icon-tile">
+          <img
+          src="https://i.ibb.co/RHYbkhr/Photoshop-ico.png"
+          title="Photoshop"
+            alt="Photoshop logo"
+          />
+        </div>
+        <div class="icon-tile">
+          <img
+            src="https://i.ibb.co/FJVzWXX/Cpp-ico.png"
+            title="C/C++"
+            alt="C++ logo"
+          />
+        </div>
+        <div class="icon-tile">
+          <img
+          src="https://i.ibb.co/6Hr1sc3/java-ico.png"
+          title="Java"
+            alt="Java logo"
+          />
+        </div>
+        <div class="icon-tile">
+          <img
+          src="https://i.ibb.co/YRFv8q5/git-ico.png"
+          title="Git"
+            alt="Git logo"
+          />
+        </div>
+      </div>
+    </section>
+    <section id="projects" class="bright">
+      <h3>Projects</h3>
+      <h4>FCC Responsive Web Design Projects</h4>
+      <p>These are the projects I made for FreeCodeCamp :</p>
+      <div class="project-tile">
+        <div class="tile-text">
+          <h5>Tribute Page</h5>
+          <p>A tribute to Chadwick Boseman.</p>
+          <p>Things that i learned from this project :</p>
+          <ul>
+            <li>Learnt more about Chadwick Boseman obviously.</li>
+            <li>Making images responsive.</li>
+            <li>
+              Importance of giving links some meaningful text to make them more
+              accessible.
+            </li>
+          </ul>
+          <a
+            href="https://codepen.io/mdshariq/full/oNxOeWZ"
+            target="_blank"
+            rel="noopener noreferrer"
+            >View on CodePen</a
+          >
+        </div>
+        <div class="tile-img">
+          <img
+            class="big-snap"
+            src="https://i.ibb.co/93CXXzL/tribute-snap.png"
+            alt=""
+          />
+          <img
+            class="small-snap"
+            src="https://i.ibb.co/vkhdrz1/tribute-snap-mob.png"
+            alt=""
+          />
+        </div>
+      </div>
+      <div class="project-tile">
+        <div class="tile-text">
+          <h5>Survey Page</h5>
+          <p>
+            A survey form to take game survey made for some imaginary company
+            CampGames.
+          </p>
+          <p>Things that i learned from this project :</p>
+          <ul>
+            <li>Importance of box-sizing property.</li>
+            <li>Handling groups of radio buttons and checkboxes.</li>
+            <li>How to style various form related elements.</li>
+          </ul>
+          <a
+            href="https://codepen.io/mdshariq/full/oNxRRgw"
+            target="_blank"
+            rel="noopener noreferrer"
+            >View on CodePen</a
+          >
+        </div>
+        <div class="tile-img">
+          <img
+            class="big-snap"
+            src="https://i.ibb.co/9WZ3J8S/survey-snap.png"
+            alt=""
+          />
+          <img
+            class="small-snap"
+            src="https://i.ibb.co/4sywzPJ/survey-snap-mob.png"
+            alt=""
+          />
+        </div>
+      </div>
+      <div class="project-tile">
+        <div class="tile-text">
+          <h5>Product Landing Page</h5>
+          <p>
+            A product landing page for some imaginary company Heavenly Apple.
+            Showcases their awesome apples are their great services.
+          </p>
+          <p>Things that i learned from this project :</p>
+          <ul>
+            <li>How awesome Flexbox is.</li>
+            <li>Making a decent navigation bar is not that hard.</li>
+            <li>
+              How to handle many elements while making responsive webpage.
+            </li>
+          </ul>
+          <a
+            href="https://codepen.io/mdshariq/full/wvWvxGY"
+            target="_blank"
+            rel="noopener noreferrer"
+            >View on CodePen</a
+          >
+        </div>
+        <div class="tile-img">
+          <img
+            class="big-snap"
+            src="https://i.ibb.co/Lp2Mrq5/product-snap.png"
+            alt=""
+          />
+          <img
+            class="small-snap"
+            src="https://i.ibb.co/R9gnqY6/product-snap-mob.png"
+            alt=""
+          />
+        </div>
+      </div>
+      <div class="project-tile">
+        <div class="tile-text">
+          <h5>Technical Documentation Page</h5>
+          <p>A technical documentation page for Flexbox.</p>
+          <p>Things that i learned from this project :</p>
+          <ul>
+            <li>Styling the srollbar.</li>
+            <li>Making responsive menu for small screens.</li>
+            <li>More stuff about Flexbox.</li>
+          </ul>
+          <a
+            href="https://codepen.io/mdshariq/full/wvWKVpN"
+            target="_blank"
+            rel="noopener noreferrer"
+            >View on CodePen</a
+          >
+        </div>
+        <div class="tile-img">
+          <img
+            class="big-snap"
+            src="https://i.ibb.co/y8qg5Rc/technical-snap.png"
+            alt=""
+          />
+          <img
+            class="small-snap"
+            src="https://i.ibb.co/s3w6QY6/technical-snap-mob.png"
+            alt=""
+          />
+        </div>
+      </div>
+    </section>
+    <section id="contact" class="dark">
+      <h3>Contact</h3>
+      <h4>Need help with a project? I'm Available</h4>
+      <p>Get in touch to collaborate on a project or just to share memes.</p>
+      <p>These are some of the places where you can find me :</p>
+      <div class="icon-tiles-container">
+        <div class="icon-tile">
+          <a
+            href="https://forum.freecodecamp.org/u/mdshariq/summary"
+            target="_blank"
+            rel="noopener noreferrer"
+            id="profile-link"
+            ><img
+              src="https://i.ibb.co/bKnGVH2/fcc-ico.png"
+              title="FreeCodeCamp"
+            alt=""
+          /></a>
+        </div>
+        <div class="icon-tile">
+          <a
+            href="https://codepen.io/mdshariq"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><img
+            src="https://i.ibb.co/5Lx9cGf/codepen-ico.png"
+            title="CodePen"
+              alt=""
+          /></a>
+        </div>
+        <div class="icon-tile">
+          <a
+            href="https://www.linkedin.com/in/mohd-shariq-4ab0541b8"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><img
+              src="https://i.ibb.co/8b9sjjY/linkedin-ico.png"
+              title="LinkedIn"
+              alt=""
+          /></a>
+        </div>
+        <div class="icon-tile">
+          <a
+            href="https://github.com/mdSrq"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><img
+            src="https://i.ibb.co/wzPQwrZ/github-ico.png"
+            title="GitHub"
+            alt=""
+          /></a>
+        </div>
+      </div>
+    </section>
+    <footer></footer>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+</body>
+</html>
