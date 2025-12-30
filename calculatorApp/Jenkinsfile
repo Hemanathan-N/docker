@@ -31,9 +31,12 @@ stages {
             sh '''
             kubectl get nodes
             kubectl get pods
+            kubectl get deploy
+            kubectl delete deploy calculatorapp || true
             kubectl create deployment calculatorapp --image=hemanathan18/calculator:$docker_version
             '''
             }
          }
 }
+
 }
