@@ -29,8 +29,9 @@ stages {
     stage('k8s deployment') {
         steps {
             sh '''
+            minikube start --driver=docker --memory=2048 --cpus=2 || true
+            minikube status
             kubectl get nodes
-            kubectl get pods
             kubectl get deploy
             kubectl delete deploy calculatorapp || true
             kubectl create deployment calculatorapp --image=hemanathan18/calculator:$docker_version
@@ -40,3 +41,4 @@ stages {
 }
 
 }
+
