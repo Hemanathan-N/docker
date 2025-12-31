@@ -35,13 +35,14 @@ stages {
             kubectl get deploy
             echo "Workspace files:"
                 ls -l
-            kubectl apply -f /home/jenkins/deploy.yml
+            kubectl apply -f /var/lib/jenkins/deploy.yml
             '''
             }
          }
 }
 
 }
+
 
 
 
