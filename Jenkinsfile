@@ -33,12 +33,13 @@ stages {
             minikube status
             kubectl get nodes
             kubectl get deploy
-            kubectl apply -f deploy.yml
+            kubectl apply -f jenkins/deploy.yml
             '''
             }
          }
 }
 
 }
+
 
 
