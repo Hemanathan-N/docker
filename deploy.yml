@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: calculatorapp
+  labels:
+    app: calculator-app
+spec:
+  replicas: 2  # number of pods you want to run
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: calculator-app
+  template:
+    metadata:
+      labels:
+        app: calculator-app
+    spec:
+      containers:
+      - name: calculatorapp-con
+        image: hemanathan18/calculator:$docker_version
+        ports:
+        - containerPort: 5000
