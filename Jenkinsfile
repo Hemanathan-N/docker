@@ -33,12 +33,12 @@ stages {
             minikube status
             kubectl get nodes
             kubectl get deploy
-            kubectl delete deploy calculatorapp || true
-            kubectl create deployment calculatorapp --image=hemanathan18/calculator:$docker_version
+            kubectl apply -f deploy.yml
             '''
             }
          }
 }
 
 }
+
 
