@@ -34,18 +34,11 @@ stages {
             kubectl get nodes
             kubectl get deploy
             echo "Workspace files:"
-                ls -l
+            ls -l
+            kubectl delete deploy calculatorapp || true
             kubectl apply -f deploy.yml
             '''
             }
          }
 }
-
 }
-
-
-
-
-
-
-
