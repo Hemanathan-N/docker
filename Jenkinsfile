@@ -33,6 +33,8 @@ stages {
             minikube status
             kubectl get nodes
             kubectl get deploy
+            echo "Workspace files:"
+                ls -l
             kubectl apply -f jenkins/deploy.yml
             '''
             }
@@ -40,6 +42,7 @@ stages {
 }
 
 }
+
 
 
 
