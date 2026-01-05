@@ -5,7 +5,7 @@ metadata:
   labels:
     app: calculator-app
 spec:
-  replicas: 2  # number of pods you want to run
+  replicas: 1  # number of pods you want to run
   strategy:
     type: RollingUpdate
   selector:
