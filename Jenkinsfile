@@ -20,9 +20,11 @@ stages {
     stage('docker push') {
         steps {
             withCredentials([usernamePassword(credentialsId: 'DockerHub', passwordVariable: 'docker_pwd', usernameVariable: 'docker_un')]) {
-                sh 'docker login -u ${docker_un} -p ${docker_pwd}'
-              }
-              sh 'docker push hemanathan18/calculator:$docker_version'
+                sh '''
+                docker login -u ${docker_un} -p ${docker_pwd}
+                docker push hemanathan18/calculator:$docker_version
+                '''
+                }
             }
         }
     
@@ -42,3 +44,4 @@ stages {
          }
 }
 }
+
