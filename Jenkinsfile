@@ -32,17 +32,10 @@ pipeline {
         stage('k8s deployment') {
             steps {
                 sh '''
-                minikube start --driver=docker --memory=2048 --cpus=2 || true
-                minikube status
                 kubectl get nodes
-                kubectl get deploy
-                echo "Workspace files:"
-                ls -l
-                kubectl delete deploy calculatorapp || true
                 kubectl apply -f deploy.yml
                 '''
             }
         }
     }
 }
-
