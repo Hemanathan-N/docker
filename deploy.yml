@@ -18,6 +18,6 @@ spec:
     spec:
       containers:
       - name: calculatorapp-con
-        image: hemanathan18/calculator:3.0
+        image: hemanathan18/calculator:latest
         ports:
         - containerPort: 5000
