@@ -13,7 +13,7 @@ pipeline {
         
         stage('docker build') {
             steps {
-                sh 'docker build -t hemanathan18/calculator:$docker_version .'
+                sh 'docker build -t hemanathan18/calculator:latest .'
             }
         }
         stage('docker push') {
@@ -24,7 +24,7 @@ pipeline {
                 usernameVariable: 'docker_un')]) {
                     sh '''
                     docker login -u ${docker_un} -p ${docker_pwd}
-                    docker push hemanathan18/calculator:$docker_version
+                    docker push hemanathan18/calculator:latest
                     '''
                 }
             }
@@ -45,3 +45,4 @@ pipeline {
         }
     }
 }
+
