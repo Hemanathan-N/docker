@@ -31,6 +31,14 @@ pipeline {
                 }
             }
         }
+        stage('Set kubeconfig') {
+            steps {
+                sh '''
+                export KUBECONFIG=/var/jenkins_home/.kube/config
+                kubectl config use-context minikube
+                '''
+            }
+        }
         stage('k8s deployment') {
             steps {
                 dir('calculatorapp') {
@@ -43,4 +51,3 @@ pipeline {
         }
     }
 }
-
