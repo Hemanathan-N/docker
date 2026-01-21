@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        KUBECONFIG = "/var/lib/jenkins_home/.kube/config"
+        KUBECONFIG = "/var/lib/jenkins/.kube/config"
     }
     stages {
         stage('checkout') {
@@ -29,14 +29,6 @@ pipeline {
                         '''
                     }
                 }
-            }
-        }
-        stage('Set kubeconfig') {
-            steps {
-                sh '''
-                export KUBECONFIG=/var/jenkins_home/.kube/config
-                kubectl config use-context minikube
-                '''
             }
         }
         stage('k8s deployment') {
