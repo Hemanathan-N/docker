@@ -1,0 +1,121 @@
+# FROM public.ecr.aws/docker/library/nginx:1.20
+# RUN apt-get update && apt-get install -y ca-certificates && rm -rf /var/lib/apt/lists/*
+# VOLUME /var/www/html
+# WORKDIR /var/www/html
+# ------------------------------------------------------------------------------------------
+# FROM public.ecr.aws/docker/library/nginx:1.20
+# RUN apt-get update && \
+#     apt-get install -y ca-certificates && \
+#     rm -rf /var/lib/apt/lists/*
+# VOLUME /var/www/html
+# WORKDIR /var/www/html
+# ------------------------------------------------------------------------------------------
+# # Sample Dockerfile demonstrating all Docker instructions
+
+# # 1. FROM: Defines the base image (the OS/environment)
+# FROM node:18-slim
+
+# # 2. LABEL: Adds metadata to the image (author, version, description)
+# LABEL maintainer="hemanathan@example.com"
+# LABEL description="Sample project showing all Docker instructions"
+
+# # 3. ENV: Sets environment variables (used during build and at runtime)
+# ENV APP_HOME=/usr/src/app
+# ENV PORT=8080
+
+# # 4. WORKDIR: Sets the "active" folder for any following commands (like 'cd')
+# WORKDIR $APP_HOME
+
+# # 5. COPY: Moves files from your computer into the Docker image
+# # We copy package files first to take advantage of Docker layer caching
+# COPY package*.json ./
+
+# # 6. RUN: Executes commands to install software or build the app
+# RUN npm install
+
+# # 7. COPY: Copy the rest of the application source code
+# COPY . .
+
+# # 8. ARG: Defines variables that users can pass at build-time (docker build --build-arg VERSION=2.0)
+# ARG VERSION=1.0.0
+# RUN echo "Building version $VERSION"
+
+# # 9. EXPOSE: Informs Docker that the container listens on the specified network port
+# EXPOSE $PORT
+
+# # 10. VOLUME: Creates a point for mounting external storage (persists data)
+# VOLUME ["/usr/src/app/logs"]
+
+# # 11. USER: Sets the username/UID to use when running the image (security best practice)
+# USER node
+
+# # 12. ENTRYPOINT: Configures the container to run as an executable
+# # Unlike CMD, these arguments are harder to override
+# ENTRYPOINT ["npm"]
+
+# # 13. CMD: Provides default arguments for the ENTRYPOINT
+# # In this case, it results in the command: npm start
+# CMD ["start"]
+
+# Instruction - Purpose
+# RUN         - Executes commands during the build process (e.g., installing software).
+# CMD         - The default command that runs when the container starts.
+# ENTRYPOINT  - Defines the main executable of the container.
+# COPY        - Best for basic file/folder copying from local to image.
+# ADD         - Like COPY, but can also extract .tar files or download from URLs.
+# ------------------------------------------------------------------------------------------
+
+# # 1. FROM debian:bullseye-slim
+
+# # 2. MAINTAINER: (Deprecated, use LABEL instead)
+# MAINTAINER Hemanathan <hema@example.com>
+
+# # 3. SHELL: Overrides the default shell used for the RUN, CMD, and ENTRYPOINT
+# # Here we change it from ['/bin/sh', '-c'] to use bash with 'pipefail' for safer builds
+# SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
+# # 4. ARG & ENV
+# ARG APP_VERSION=2.0.0
+# ENV DEBIAN_FRONTEND=noninteractive
+
+# # 5. RUN: Install dependencies
+# RUN apt-get update && apt-get install -y --no-install-recommends \
+#     curl \
+#     ca-certificates \
+#     && rm -rf /var/lib/apt/lists/*
+
+# # 6. ADD: Similar to COPY, but can pull from URLs or auto-extract tarballs
+# # Example: Adding a remote config file (URL) or a local compressed archive
+# ADD https://www.google.com/robots.txt /root/google_check.txt
+# ADD project_assets.tar.gz /app/
+
+# # 7. WORKDIR: Set the workspace
+# WORKDIR /app
+
+# # 8. ONBUILD: These triggers run ONLY when this image is used as a BASE 
+# # for another Dockerfile (useful for "template" images)
+# ONBUILD RUN echo "Building a child image based on this one!"
+# ONBUILD COPY . /app/src
+
+# # 9. STOPSIGNAL: Sets the system call signal that will be sent to the 
+# # container to exit (SIGTERM is default, SIGKILL is immediate)
+# STOPSIGNAL SIGQUIT
+
+# # 10. HEALTHCHECK: Tells Docker how to test if the container is still working
+# # This checks every 30s if the localhost is responding
+# HEALTHCHECK --interval=30s --timeout=3s \
+#   CMD curl -f http://localhost/ || exit 1
+
+# # 11. EXPOSE: Documentation of the port
+# EXPOSE 80
+
+# # 12. CMD: The command to run
+# CMD ["bash"]
+
+# Instruction - What it actually does
+# ADD         - Use it specifically for extracting .tar.gz files automatically or downloading files from a URL. For regular files, COPY is preferred.
+# HEALTHCHECK - Vital for production! It lets Docker (or Kubernetes) know if your app has crashed/frozen even if the process is technically "running."
+# ONBUILD     - Think of this as a ""Letter to the Future."" It does nothing now, but if you ever write FROM your-image-name in a different Dockerfile, these commands trigger first."\
+# SHELL       - Very useful if you want to use Windows PowerShell in a Windows container or advanced Bash features in Linux instead of the basic /bin/sh.
+# STOPSIGNAL  - Used for apps that don't shut down cleanly with SIGTERM. It forces the app to listen for a specific signal to close its database connections/files properly.
+# MAINTAINER  - Old school. Nowadays, people use LABEL maintainer="name".
