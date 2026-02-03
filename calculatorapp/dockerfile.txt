@@ -9,4 +9,3 @@ COPY server.js .
 EXPOSE 5000
 #finally we want or run application
 CMD ["node", "server.js"]
-
